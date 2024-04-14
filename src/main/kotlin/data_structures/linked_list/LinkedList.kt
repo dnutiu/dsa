@@ -198,6 +198,8 @@ class LinkedList<T> : Iterable<Node<T>> {
     override fun iterator(): Iterator<Node<T>> {
         return NodeIterator(this)
     }
+
+    companion object
 }
 
 /**
@@ -210,3 +212,22 @@ inline fun <reified E> LinkedList<E>.toArray(): Array<E?> {
     }
     return newArray
 }
+
+/**
+ * Creates an empty linked list.
+ */
+fun <T> LinkedList.Companion.emptyList(): LinkedList<T> {
+    return LinkedList()
+}
+
+/**
+ * Constructs a linked list from a variable number of arguments.
+ */
+fun <T> LinkedList.Companion.listOf(vararg items: T): LinkedList<T> {
+    val linkedList = LinkedList<T>()
+    items.forEach {
+        linkedList.append(it)
+    }
+    return linkedList
+}
+

@@ -1,6 +1,8 @@
 package data_structures.linked_list
 
 import dev.nuculabs.dsa.data_structures.linked_list.LinkedList
+import dev.nuculabs.dsa.data_structures.linked_list.emptyList
+import dev.nuculabs.dsa.data_structures.linked_list.listOf
 import dev.nuculabs.dsa.data_structures.linked_list.toArray
 import org.junit.jupiter.api.Test
 
@@ -288,5 +290,22 @@ class LinkedListTest {
 
         // Assert
         assertContentEquals(arrayOf("First", "Second"), result)
+    }
+
+    @Test
+    fun emptyList() {
+        // Test
+        val list = LinkedList.emptyList<String>()
+        // Assert
+        assertEquals(0, list.size())
+    }
+
+    @Test
+    fun listOf() {
+        // Test
+        val list = LinkedList.listOf("One", "Two", "Three")
+        // Assert
+        assertEquals(3, list.size())
+        assertContentEquals(listOf("One", "Two", "Three"), list.toJavaList())
     }
 }
