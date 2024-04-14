@@ -199,3 +199,14 @@ class LinkedList<T> : Iterable<Node<T>> {
         return NodeIterator(this)
     }
 }
+
+/**
+ * Converts the Linked List to an array.
+ */
+inline fun <reified E> LinkedList<E>.toArray(): Array<E?> {
+    val newArray = arrayOfNulls<E>(this.size())
+    this.forEachIndexed { i, node ->
+        newArray[i] = node.value
+    }
+    return newArray
+}

@@ -1,6 +1,7 @@
 package data_structures.linked_list
 
 import dev.nuculabs.dsa.data_structures.linked_list.LinkedList
+import dev.nuculabs.dsa.data_structures.linked_list.toArray
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -273,5 +274,19 @@ class LinkedListTest {
         assertContentEquals(listOf("Fifth", "Fourth", "Third", "Second", "First"), linkedList.toJavaList())
         assertEquals("Fifth", linkedList.getFirst())
         assertEquals("First", linkedList.getLast())
+    }
+
+    @Test
+    fun toArray() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("First")
+        linkedList.append("Second")
+
+        // Test
+        val result = linkedList.toArray()
+
+        // Assert
+        assertContentEquals(arrayOf("First", "Second"), result)
     }
 }
