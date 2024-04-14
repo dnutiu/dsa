@@ -151,6 +151,21 @@ class LinkedListTest {
     }
 
     @Test
+    fun deleteInvalidPosition() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("First")
+
+        // Test
+        assertThrows(IllegalArgumentException::class.java) {
+            linkedList.delete(-1)
+        }
+        assertThrows(IllegalArgumentException::class.java) {
+            linkedList.delete(99)
+        }
+    }
+
+    @Test
     fun toJavaList() {
         // Setup
         val linkedList = LinkedList<String>()
@@ -163,5 +178,100 @@ class LinkedListTest {
 
         // Assert
         assertContentEquals(listOf("First", "Second", "Third"), result)
+    }
+
+    @Test
+    fun insertFirst() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("Second")
+
+        // Test
+        linkedList.insert("First", 0)
+
+        // Assert
+        assertContentEquals(listOf("First", "Second"), linkedList.toJavaList())
+        assertEquals("First", linkedList.getFirst())
+        assertEquals("Second", linkedList.getLast())
+    }
+
+    @Test
+    fun insertLast() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("First")
+
+        // Test
+        linkedList.insert("Second", linkedList.size())
+
+        // Assert
+        assertContentEquals(listOf("First", "Second"), linkedList.toJavaList())
+        assertEquals("First", linkedList.getFirst())
+        assertEquals("Second", linkedList.getLast())
+    }
+
+    @Test
+    fun insertMiddle() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("First")
+        linkedList.append("Second")
+
+        // Test
+        linkedList.insert("Middle", linkedList.size() - 1)
+
+        // Assert
+        assertContentEquals(listOf("First", "Middle", "Second"), linkedList.toJavaList())
+        assertEquals("First", linkedList.getFirst())
+        assertEquals("Second", linkedList.getLast())
+    }
+
+    @Test
+    fun reverseOneElement() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("First")
+
+        // Test
+        linkedList.reverse()
+
+        // Assert
+        assertContentEquals(listOf("First"), linkedList.toJavaList())
+    }
+
+    @Test
+    fun reverseTwoElements() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("First")
+        linkedList.append("Second")
+
+        // Test
+        linkedList.reverse()
+
+        // Assert
+        assertContentEquals(listOf("Second", "First"), linkedList.toJavaList())
+        assertEquals("Second", linkedList.getFirst())
+        assertEquals("First", linkedList.getLast())
+    }
+
+    @Test
+    fun reverseFiveElements() {
+        // Setup
+        val linkedList = LinkedList<String>()
+        linkedList.append("First")
+        linkedList.append("Second")
+        linkedList.append("Third")
+        linkedList.append("Fourth")
+        linkedList.append("Fifth")
+
+
+        // Test
+        linkedList.reverse()
+
+        // Assert
+        assertContentEquals(listOf("Fifth", "Fourth", "Third", "Second", "First"), linkedList.toJavaList())
+        assertEquals("Fifth", linkedList.getFirst())
+        assertEquals("First", linkedList.getLast())
     }
 }

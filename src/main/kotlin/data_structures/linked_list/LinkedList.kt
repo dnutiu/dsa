@@ -44,6 +44,43 @@ class LinkedList<T> : Iterable<Node<T>> {
     }
 
     /**
+     * Inserts an element at the given position.
+     */
+    fun insert(value: T, position: Int) {
+        // handle invalid position
+        if (position < 0 || position > size) {
+            throw IllegalArgumentException("invalid position given")
+        }
+        // handle insert last
+        if (position == size) {
+            append(value)
+            return
+        }
+        // handle insert first
+        if (position == 0) {
+            val newNode = Node(value, head)
+            head = newNode
+            size += 1
+            return
+        }
+        var currentPosition = 0
+        var currentNode: Node<T>? = head
+        var previousNode: Node<T>? = null
+        // search for position to insert at
+        while (true) {
+            if (currentPosition == position) {
+                val newNode = Node(value, currentNode)
+                previousNode?.next = newNode
+                size += 1
+                break
+            }
+            currentPosition += 1
+            previousNode = currentNode
+            currentNode = currentNode?.next
+        }
+    }
+
+    /**
      * Returns from the list
      */
     fun get(position: Int): T? {
@@ -64,7 +101,7 @@ class LinkedList<T> : Iterable<Node<T>> {
      */
     fun delete(position: Int) {
         if (size == 0 || position < 0 || position >= size) {
-            return
+            throw IllegalArgumentException("invalid position given")
         }
         // delete head
         if (position == 0) {
@@ -84,8 +121,10 @@ class LinkedList<T> : Iterable<Node<T>> {
             previousNode = currentNode
             currentNode = currentNode?.next
             currentPosition += 1
+            // we found element at position N which is about to get deleted
             if (currentPosition == position) {
                 previousNode!!.next = currentNode?.next
+                // we deleted the tail, so we need to update tail var.
                 if (currentPosition == size - 1) {
                     tail = previousNode
                 }
@@ -107,6 +146,32 @@ class LinkedList<T> : Iterable<Node<T>> {
      */
     fun size(): Int {
         return size
+    }
+
+    /**
+     * Reverses the list in place.
+     */
+    fun reverse() {
+        if (size == 1) {
+            return
+        }
+        tail = head
+        var currentNode = head
+        var previousNode: Node<T>? = null
+        var next = head
+        // we iterate through the list and updates next accordingly, until we reach the tail.
+        while (next != null) {
+            // save the next
+            next = currentNode?.next
+            // current node's next will be set to previous node.
+            currentNode?.next = previousNode
+            // track previous node by settings it to current node
+            previousNode = currentNode
+            // track the current node by setting it to next
+            currentNode = next
+        }
+        // update the head
+        head = previousNode
     }
 
     /**
