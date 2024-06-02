@@ -11,4 +11,4 @@ What better way to learn a language and new concepts exists other than practicin
 
 ## Ranking
 
-* BM25+ [Implementation](https://github.com/dnutiu/dsa/blob/master/src/main/kotlin/ranking/bm25/Bm25Plus.kt) | [Tests](https://github.com/dnutiu/dsa/blob/master/src/test/kotlin/ranking/bm25/BM25PlusTest.kt)
+* BM25+ [Implementation](https://github.com/dnutiu/dsa/blob/master/src/main/kotlin/ranking/bm25/Bm25Plus.kt) | [Tests](https://github.com/dnutiu/dsa/blob/master/src/test/kotlin/ranking/bm25/BM25PlusTest.kt) | [Reference Paper](http://www.cs.otago.ac.nz/homepages/andrew/papers/2014-2.pdf)
