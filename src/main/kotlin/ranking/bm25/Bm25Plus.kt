@@ -154,7 +154,7 @@ class Bm25Plus {
     /**
      * Computes the inverse document frequency for a given term.
      *
-     * THe IDF is defined as the total number of documents (N) divided by the documents that contain the term (dft).
+     * The IDF is defined as the total number of documents (N) divided by the documents that contain the term (dft).
      * In the BM25+ version the IDF is the (N+1)/(dft)
      */
     private fun computeInverseDocumentFrequency(term: String): Double {
